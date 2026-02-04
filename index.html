@@ -13,6 +13,7 @@
             --dark-gray: #333333;
             --black: #000000;
             --bg-dark: #0a0a0a;
+            --rte-red: #e20613;
         }
 
         * {
@@ -27,6 +28,44 @@
             color: var(--white);
             overflow-x: hidden;
             line-height: 1.8;
+            position: relative;
+        }
+
+        /* Enhanced Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.02) 0%, transparent 50%),
+                radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.025) 0%, transparent 50%),
+                linear-gradient(135deg, #000000 0%, #0a0a0a 50%, #000000 100%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Diagonal lines pattern */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 100px,
+                    rgba(255, 255, 255, 0.01) 100px,
+                    rgba(255, 255, 255, 0.01) 101px
+                );
+            z-index: 0;
+            pointer-events: none;
         }
 
         #particles {
@@ -37,6 +76,48 @@
             height: 100%;
             z-index: 1;
             pointer-events: none;
+        }
+
+        /* Grid overlay */
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* RTE Logo Watermark */
+        .rte-logo-watermark {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            opacity: 0.04;
+            pointer-events: none;
+            width: 60vw;
+            max-width: 800px;
+            height: auto;
+        }
+
+        /* RTE Logo in header */
+        .rte-logo-header {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            width: 120px;
+            height: auto;
+            opacity: 0.9;
+            z-index: 100;
+            animation: fadeIn 1s ease-out 0.5s backwards;
+            filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3));
         }
 
         .wrapper {
@@ -71,6 +152,7 @@
             border-bottom: 4px solid var(--white);
             display: inline-block;
             padding-bottom: 1rem;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
         }
 
         .subtitle {
@@ -91,6 +173,9 @@
             border: 2px solid var(--white);
             padding: 1rem 2rem;
             display: inline-block;
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 40px rgba(255, 255, 255, 0.1);
         }
 
         .scroll-hint {
@@ -107,6 +192,7 @@
             width: 2px;
             height: 40px;
             background: var(--white);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
         }
 
         /* Projects */
@@ -128,6 +214,7 @@
             display: inline-block;
             left: 50%;
             transform: translateX(-50%);
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
         }
 
         .section-heading::after {
@@ -138,6 +225,7 @@
             width: 100%;
             height: 2px;
             background: var(--white);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
         }
 
         .projects-container {
@@ -167,6 +255,7 @@
             height: 0;
             background: var(--white);
             transition: height 0.5s ease;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
         }
 
         .project-item:hover::before {
@@ -177,6 +266,7 @@
             background: rgba(255, 255, 255, 0.05);
             border-color: var(--white);
             transform: translateX(10px);
+            box-shadow: 0 10px 40px rgba(255, 255, 255, 0.1);
         }
 
         .project-item:nth-child(1) { animation-delay: 0.1s; }
@@ -192,6 +282,7 @@
             color: var(--dark-gray);
             font-weight: 900;
             line-height: 1;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
         }
 
         .project-name {
@@ -254,6 +345,7 @@
 
         .project-btn:hover {
             color: var(--black);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
         }
 
         .project-btn span {
@@ -275,6 +367,7 @@
             text-transform: uppercase;
             animation: slideUp 1s ease-out;
             letter-spacing: 0.2em;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
         }
 
         .contact-link {
@@ -315,6 +408,7 @@
 
         .contact-link:hover {
             color: var(--black);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
         }
 
         /* Footer */
@@ -348,6 +442,15 @@
             }
         }
 
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 0.9;
+            }
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .projects-container {
@@ -361,14 +464,65 @@
             .project-item {
                 padding: 2rem;
             }
+
+            .rte-logo-header {
+                width: 80px;
+                top: 1rem;
+                right: 1rem;
+            }
+
+            .rte-logo-watermark {
+                width: 80vw;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Grid overlay -->
+    <div class="grid-overlay"></div>
+
+    <!-- RTE Logo Watermark (background) -->
+    <svg class="rte-logo-watermark" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <filter id="glow">
+                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                <feMerge>
+                    <feMergeNode in="coloredBlur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+            </filter>
+        </defs>
+        <!-- RTE Logo (transparent version) in B&W -->
+        <g filter="url(#glow)">
+            <!-- Circle background (transparent with white border) -->
+            <circle cx="100" cy="100" r="85" fill="none" stroke="white" stroke-width="4" opacity="0.3"/>
+            
+            <!-- RTE text -->
+            <text x="100" y="115" font-family="Arial, sans-serif" font-size="48" font-weight="300" text-anchor="middle" fill="white" opacity="0.3">Rte</text>
+            
+            <!-- Horizontal line through R, T, and E (not extending beyond) -->
+            <line x1="62" y1="100" x2="138" y2="100" stroke="white" stroke-width="3" opacity="0.3" stroke-linecap="round"/>
+        </g>
+    </svg>
+
     <canvas id="particles"></canvas>
 
     <div class="wrapper">
         <header class="main-header">
+            <!-- RTE Logo in header -->
+            <svg class="rte-logo-header" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <g>
+                    <!-- Circle background (transparent with white border) -->
+                    <circle cx="100" cy="100" r="85" fill="none" stroke="white" stroke-width="4"/>
+                    
+                    <!-- RTE text -->
+                    <text x="100" y="115" font-family="Arial, sans-serif" font-size="48" font-weight="300" text-anchor="middle" fill="white">Rte</text>
+                    
+                    <!-- Horizontal line through R, T, and E (not extending beyond) -->
+                    <line x1="62" y1="100" x2="138" y2="100" stroke="white" stroke-width="3" stroke-linecap="round"/>
+                </g>
+            </svg>
+
             <h1 class="main-title">Nassim Ketfi</h1>
             <p class="subtitle">Développeur</p>
             <h2 class="company-tag">Innovations pour RTE</h2>
@@ -426,8 +580,8 @@
         </section>
 
         <section class="contact-area">
-            <h2 class="contact-heading"> Mon Contact Mail </h2>
-            <a href="/cdn-cgi/l/email-protection#1b7535707e6f7d722e2c5b7c767a727735787476" class="contact-link">
+            <h2 class="contact-heading">Mon Contact Mail</h2>
+            <a href="mailto:nassim.ketfi@rte-france.com" class="contact-link">
                 Me Contacter
             </a>
         </section>
@@ -437,7 +591,7 @@
         </footer>
     </div>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
         const canvas = document.getElementById('particles');
         const ctx = canvas.getContext('2d');
 
@@ -556,4 +710,10 @@
             threshold: 0.1
         });
 
-        const cards = document.querySelector
+        const cards = document.querySelectorAll('.project-item');
+        for (let i = 0; i < cards.length; i++) {
+            observer.observe(cards[i]);
+        }
+    </script>
+</body>
+</html>
